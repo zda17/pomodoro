@@ -5,6 +5,7 @@ import AddTask from './AddTask';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
+    const [showAddTaskForm, setShowAddTaskFrom] = useState(false);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -73,8 +74,8 @@ const Tasks = () => {
     }
     
     return (
-        <div>
-            <AddTask onAdd={addTask} />
+        <div className="w-full">
+            {showAddTaskForm && <AddTask onAdd={addTask} />}
             
             {tasks.map((task) => (
                 <Task 

@@ -1,3 +1,9 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "text": "test task",
+      "completed": false,
+      "id": 1
+    }
+  ]
 }

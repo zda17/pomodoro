@@ -60,12 +60,12 @@ const Timer = () => {
     }
 
     return (
-        <div className="mb-24">
-            <div className="message text-xl text-white text-center mb-4">
+        <div className="flex flex-col items-center">
+            <div className="message text-xl text-black text-center mb-4">
                 {headerMessage}
             </div>
 
-            <div className="timer text-4xl text-white font-bold">
+            <div className="timer text-4xl text-black font-bold">
                 {timerMinutes}:{timerSeconds}
             </div>
 

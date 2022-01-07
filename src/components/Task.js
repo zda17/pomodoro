@@ -1,4 +1,4 @@
-import { FaTimes, FaCircle } from 'react-icons/fa';
+import { FaTimes, FaCircle, FaCheckCircle } from 'react-icons/fa';
 
 const Task = ({ task, onDelete, onToggle }) => {
     return (
@@ -9,7 +9,9 @@ const Task = ({ task, onDelete, onToggle }) => {
                 className="flex items-center"
                 onClick={() => onToggle(task.id)}
             >
-                <FaCircle className="mr-2"/>
+                <div className="mr-2 text-2xl">
+                    {task.completed === true ? <FaCheckCircle  />  : <FaCircle />}
+                </div>
 
                 <h3 
                     className={'text-black text-2xl ' + (task.completed === true ? 'line-through' : '')}
