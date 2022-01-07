@@ -3,9 +3,8 @@ import {useState, useEffect} from "react";
 import Task from './Task';
 import AddTask from './AddTask';
 
-const Tasks = () => {
+const Tasks = ({ toggleAddTaskForm }) => {
     const [tasks, setTasks] = useState([]);
-    const [showAddTaskForm, setShowAddTaskFrom] = useState(false);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -75,7 +74,9 @@ const Tasks = () => {
     
     return (
         <div className="w-full">
-            {showAddTaskForm && <AddTask onAdd={addTask} />}
+            <AddTask onAdd={addTask} />
+
+            <hr className="my-8 text-slate-300" />
             
             {tasks.map((task) => (
                 <Task 

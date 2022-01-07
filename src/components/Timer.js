@@ -1,5 +1,7 @@
-import {useState, useEffect} from "react";
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
     let [minutes, setMinutes] = useState(0);
@@ -67,10 +69,10 @@ const Timer = () => {
             </div>
 
             <button 
-                className="bg-red-900 text-white p-5 mt-4 rounded-3xl"
+                className="bg-termly-blue text-white p-5 mt-4 rounded-3xl"
                 onClick={toggleTimer}
             >
-                {timerActive ? <FaPause /> : <FaPlay />}
+                {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
             </button>
         </div>
     )

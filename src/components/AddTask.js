@@ -20,24 +20,23 @@ const AddTask = ({ onAdd }) => {
 
     return (
         <form className="add-task-form" onSubmit={onSubmit}>
-            <div className="form-control">
-                <label>
-                    Task Name
-                </label>
+            <div className="flex w-full h-10">
+                <label></label>
                 <input 
                     type='text' 
-                    placeholder='Add Task' 
+                    placeholder='Add New Task' 
                     value={text} 
+                    className="w-5/6 rounded-l-lg p-2 text-xl"
                     onChange={(e) => setText(e.target.value)}
                 ></input>
+
+                <input 
+                    type="submit" 
+                    value="+" 
+                    className="w-1/6 bg-termly-blue rounded-r-lg text-white text-2xl"
+                ></input>
+
             </div>
-
-            <input 
-                type="submit" 
-                value="Save Task" 
-                className="bg-red-700"
-            />
-
         </form>
     )
 }
