@@ -7,56 +7,53 @@ const Timer = () => {
     let [rounds, setRounds] = useState(1);
     let [breakTime, setBreakTime] = useState(false);
     let [timerActive, setTimerActive] = useState(false);
-    let [headerMessage, setHeaderMessage] = useState(false);
+    let [headerMessage, setHeaderMessage] = useState(`Round ${rounds}. Press play when youre ready!`);
 
     let timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     let timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
     useEffect(() => {
-        let interval = setInterval(() => {
-            clearInterval(interval);
+        let interval;
+        if (timerActive) {
+            interval = setInterval(() => {
+                    if (seconds === 0) {
+                        if (minutes === 0) {
+                            if (breakTime === true) {
+                                // break time just ended, start a new round
+                                setMinutes(0);
+                                setSeconds(25);
+                                setRounds(rounds++);
+                                setBreakTime(false);
+                                setHeaderMessage(`Round: ${rounds} `)
 
-            if (timerActive) {
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        if (breakTime === true) {
-                            // break time just ended, start a new round
-                            setMinutes(0);
-                            setSeconds(25);
-                            setRounds(rounds++);
-                            setBreakTime(false);
-                            setHeaderMessage(`Round: ${rounds} `)
-
-                        } else if (rounds % 4 === 0) {
-                            // start long break
-
-                            setHeaderMessage('Time for a long break!');
-                            setMinutes(0);
-                            setSeconds(10);
-                            setBreakTime(true);
+                            } else if (rounds % 4 === 0) {
+                                // start long break
+                                setHeaderMessage('Time for a long break!');
+                                setMinutes(0);
+                                setSeconds(10);
+                                setBreakTime(true);
+                            } else {
+                                // start short break
+                                setHeaderMessage('Time for a quick break!');
+                                setMinutes(0);
+                                setSeconds(5);
+                                setBreakTime(true);
+                            }
                         } else {
-                            // start short break
-
-                            setHeaderMessage('Time for a quick break!');
-                            setMinutes(0);
-                            setSeconds(5);
-                            setBreakTime(true);
+                            // lower minutes by 1, reset seconds to 59
+                            setSeconds(59);
+                            setMinutes(minutes - 1);
                         }
                     } else {
-                        // lower minutes by 1, reset seconds to 59
-                        setSeconds(59);
-                        setMinutes(minutes - 1);
+                        setSeconds(seconds - 1);
                     }
-                } else {
-                    setSeconds(seconds - 1);
-                }
-            }
-        }, 1000)
+            }, 1000)
+        }
+        return () => clearInterval(interval);
     }, [seconds, minutes, rounds, breakTime, timerActive])
 
     const toggleTimer = () => {
         setTimerActive(!timerActive);
-        setHeaderMessage(`Round ${rounds}. Here we go!`);
     }
 
     return (
