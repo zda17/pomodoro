@@ -64,8 +64,13 @@ const Timer = () => {
                 {headerMessage}
             </div> */}
 
-            <div className="timer text-4xl text-black font-bold">
-                {timerMinutes}:{timerSeconds}
+            <div className="timer font-bold">
+                <span className="text-black text-4xl">
+                    {timerMinutes}:
+                </span>
+                <span className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-4xl'}>
+                    {timerSeconds}
+                </span>
             </div>
 
             <button 
