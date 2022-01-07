@@ -59,17 +59,17 @@ const Timer = () => {
     }
 
     return (
-        <div className="flex flex-col items-center">
-            <div className="message text-xl text-black text-center mb-4">
+        <div className="flex flex-col items-center justify-center h-80">
+            {/* <div className="message text-xl text-black text-center mb-4">
                 {headerMessage}
-            </div>
+            </div> */}
 
             <div className="timer text-4xl text-black font-bold">
                 {timerMinutes}:{timerSeconds}
             </div>
 
             <button 
-                className="bg-termly-blue text-white p-5 mt-4 rounded-3xl"
+                className="bg-termly-blue text-white p-5 mt-4 rounded-2xl"
                 onClick={toggleTimer}
             >
                 {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
