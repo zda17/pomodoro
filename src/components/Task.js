@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 
 const Task = ({ task, onDelete, onToggle }) => {
@@ -12,7 +12,7 @@ const Task = ({ task, onDelete, onToggle }) => {
                 onClick={() => onToggle(task.id)}
             >
                 <div className="mr-2 text-md">
-                    {task.completed === true ? <FontAwesomeIcon icon={faCheckCircle} />  : <FontAwesomeIcon icon={farCircle} />}
+                    {task.completed === true ? <FontAwesomeIcon className='text-termly-blue' icon={faCheckCircle} />  : <FontAwesomeIcon icon={farCircle} />}
                 </div>
 
                 <h3 
@@ -23,7 +23,7 @@ const Task = ({ task, onDelete, onToggle }) => {
             </div>
 
             <FontAwesomeIcon 
-                icon={faTrash}
+                icon={faTimes}
                 className="cursor-pointer" 
                 onClick={() => onDelete(task.id)} 
             />
