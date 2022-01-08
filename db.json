@@ -2,7 +2,7 @@
   "tasks": [
     {
       "text": "Task 1",
-      "completed": true,
+      "completed": false,
       "id": 1
     },
     {
