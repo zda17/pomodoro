@@ -39,8 +39,9 @@ const Timer = () => {
                                 // start long break
                                 setAlert(
                                     <> 
-                                        <span className="font-bold">4 rounds are up!</span> 
-                                        <span>Time for a long break. The timer will automatically reset after this break.</span>
+                                        <span className="font-bold">4 rounds are up.</span> 
+                                        <span className="font-bold text-lg italic">Time for a long break!</span>
+                                        <span>The timer will automatically reset after this break.</span>
                                     </>
                                 );
                                 setMinutes(0);
