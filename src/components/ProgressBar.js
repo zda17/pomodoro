@@ -24,10 +24,12 @@ const ProgressBar = ({ tasks }) => {
             <progress 
                 id="file" 
                 max="100"
-                className="w-full"
+                className="progress-bar w-full"
+                style={{"WebkitProgressBar": "red"}}
                 value={progress}>
-                Progress
+                {progress}
             </progress>
+            {/* styling is in index.css for simplicity */}
         </>
     )
 }

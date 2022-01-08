@@ -82,8 +82,6 @@ const Tasks = ({ toggleAddTaskForm }) => {
         <div className="w-full">
             <AddTask onAdd={addTask} />
 
-            <hr className="my-8 text-slate-300" />
-
             <ProgressBar tasks={tasks} />
             
             {tasks.map((task) => (
