@@ -84,7 +84,7 @@ const Tasks = ({ toggleAddTaskForm }) => {
 
             <ProgressBar tasks={tasks} />
             
-            <div className="h-40 overflow-y-scroll">
+            <div className="h-40 overflow-y-scroll shadow-inner p-2 rounded-lg">
                 {tasks.map((task) => (
                     <Task 
                         key={task.id} 
