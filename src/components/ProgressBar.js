@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-const ProgressBar = ({ tasks }) => {
+const ProgressBar = ({ tasks, toggleTimer }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -14,17 +14,16 @@ const ProgressBar = ({ tasks }) => {
             }
 
             if (completedProgress === 100) {
-                console.log('All tasks are completed!');
                 setProgress(completedProgress);
+                toggleTimer();
                 confetti();
-                // TODO: stop the timer and show a congratulatory message!
             } else {
                 setProgress(completedProgress);
             }
         }
 
         tasksProgress();
-    }, [progress, tasks])
+    }, [tasks])
 
     const clearConfetti = () => {
         const canvas = document.querySelector('#confetti');
@@ -61,11 +60,8 @@ const ProgressBar = ({ tasks }) => {
             this.size = size < 15 ? 15 : size;
 
             this.color = colours[Math.floor(colours.length * Math.random())];
-
             this.speed = this.size/7;
-            
             this.opacity = Math.random();
-
             this.shiftDirection = Math.random() > 0.5 ? 1 : -1;
         }
 

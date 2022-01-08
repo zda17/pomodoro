@@ -1,5 +1,4 @@
 import Timer from "./Timer";
-import Tasks from "./Tasks";
 
 
 const Pomodoro = () => {
@@ -20,8 +19,6 @@ const Pomodoro = () => {
             </div>
 
             <Timer />
-
-            <Tasks />
         </div>
     )
 }

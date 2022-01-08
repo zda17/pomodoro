@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import Tasks from "./Tasks";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
@@ -74,6 +75,9 @@ const Timer = () => {
     }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
     const toggleTimer = () => {
+        // for some reason this is hit twice when all tasks are completed... why?
+        console.log('this is hit');
+        console.log(timerActive);
         setTimerActive(!timerActive);
         if (rounds === 0) {
             setRounds(rounds + 1);
@@ -92,31 +96,36 @@ const Timer = () => {
     }
  
     return (
-        <div className="flex flex-col items-center justify-center h-96 mb-16">
+        <>
+            <div className="flex flex-col items-center justify-center h-96 mb-16">
 
-            <div className="flex flex-col items-center justify-center text-black text-center h-1/2">
-                {alert}
-            </div>
-
-            <div className="flex flex-col w-full h-1/2">
-                <div className="flex items-center justify-center font-bold h-2/3">
-                    <div className="text-black text-5xl">
-                        {timerMinutes}:
-                    </div>
-                    <div className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-5xl'}>
-                        {timerSeconds}
-                    </div>
+                <div className="flex flex-col items-center justify-center text-black text-center h-1/2">
+                    {alert}
                 </div>
 
-                {/* TODO: finish the button component */}
-                <button 
-                    className="bg-termly-blue text-white p-5 rounded-2xl"
-                    onClick={toggleTimer}
-                >
-                    {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
-                </button>
+                <div className="flex flex-col w-full h-1/2">
+                    <div className="flex items-center justify-center font-bold h-2/3">
+                        <div className="text-black text-5xl">
+                            {timerMinutes}:
+                        </div>
+                        <div className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-5xl'}>
+                            {timerSeconds}
+                        </div>
+                    </div>
+
+                    {/* TODO: finish the button component */}
+                    <button 
+                        className="bg-termly-blue text-white p-5 rounded-2xl"
+                        onClick={toggleTimer}
+                    >
+                        {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
+                    </button>
+                </div>
+
             </div>
-        </div>
+            
+            <Tasks toggleTimer={toggleTimer} />
+        </>
     )
 }
 

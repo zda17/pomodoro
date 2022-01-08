@@ -4,7 +4,7 @@ import Task from './Task';
 import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
 
-const Tasks = ({ toggleAddTaskForm }) => {
+const Tasks = ({ toggleAddTaskForm, toggleTimer }) => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
@@ -82,7 +82,7 @@ const Tasks = ({ toggleAddTaskForm }) => {
         <div className="w-full">
             <AddTask onAdd={addTask} />
 
-            <ProgressBar tasks={tasks} />
+            <ProgressBar tasks={tasks} toggleTimer={toggleTimer} />
             
             <div className="h-40 overflow-y-scroll shadow-inner p-2 rounded-b-lg">
                 {tasks.map((task) => (
