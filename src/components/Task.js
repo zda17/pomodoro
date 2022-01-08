@@ -8,7 +8,7 @@ const Task = ({ task, onDelete, onToggle }) => {
             className="p-2 flex items-center justify-between"
         >
             <div 
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => onToggle(task.id)}
             >
                 <div className="mr-2 text-lg">
