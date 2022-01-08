@@ -70,6 +70,11 @@ const Tasks = ({ toggleAddTaskForm }) => {
         const data = await res.json();
 
         setTasks(tasks.map((task) => task.id === id ? { ...task, completed: data.completed } : task));
+
+        // after task is completed, delay its deletion for 2 seconds
+        if (updatedTask.completed === true) {
+            setTimeout(deleteTask, 2000, updatedTask.id);
+        }
     }
     
     return (

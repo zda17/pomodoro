@@ -28,7 +28,6 @@ const AddTask = ({ onAdd }) => {
                     value={text} 
                     className="w-5/6 rounded-l-lg p-2 text-xl"
                     onChange={(e) => setText(e.target.value)}
-                    autofocus
                 ></input>
 
                 <input 

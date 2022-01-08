@@ -1,18 +1,21 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
-    let [minutes, setMinutes] = useState(0);
-    let [seconds, setSeconds] = useState(7);
-    let [rounds, setRounds] = useState(1);
-    let [breakTime, setBreakTime] = useState(false);
-    let [timerActive, setTimerActive] = useState(false);
-    let [headerMessage, setHeaderMessage] = useState(`Round ${rounds}. Press play when youre ready!`);
+    const [rounds, setRounds] = useState(1);
+    const [seconds, setSeconds] = useState(3);
+    const [minutes, setMinutes] = useState(0);
+    const [breakTime, setBreakTime] = useState(false);
+    const [timerActive, setTimerActive] = useState(false);
+    const [alert, setAlert] = useState(`Press play when youre ready!`);
+    const [quote, setQuote] = useState(false);
 
-    let timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    let timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
     useEffect(() => {
         let interval;
@@ -22,21 +25,27 @@ const Timer = () => {
                         if (minutes === 0) {
                             if (breakTime === true) {
                                 // break time just ended, start a new round
+                                setRounds(rounds + 1);
                                 setMinutes(0);
-                                setSeconds(25);
-                                setRounds(rounds++);
+                                setSeconds(15);
+                                setAlert(false);
                                 setBreakTime(false);
-                                setHeaderMessage(`Round: ${rounds} `)
-
                             } else if (rounds % 4 === 0) {
                                 // start long break
-                                setHeaderMessage('Time for a long break!');
+                                setAlert('4 rounds are up! Time for a long break.');
                                 setMinutes(0);
                                 setSeconds(10);
                                 setBreakTime(true);
+                                setRounds(0);
                             } else {
                                 // start short break
-                                setHeaderMessage('Time for a quick break!');
+                                if (rounds === 1) {
+                                    setAlert(`First round down! ${quote}`);
+                                } else if (rounds === 2) {
+                                    setAlert('Half way done. Take some deep breaths. Re-focus. You got this!');
+                                } else if (rounds === 3) {
+                                    setAlert('1 round to go! Remember why you started.');
+                                }
                                 setMinutes(0);
                                 setSeconds(5);
                                 setBreakTime(true);
@@ -52,19 +61,20 @@ const Timer = () => {
             }, 1000)
         }
         return () => clearInterval(interval);
-    }, [seconds, minutes, rounds, breakTime, timerActive])
+    }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
     const toggleTimer = () => {
         setTimerActive(!timerActive);
+        setAlert(false);
     }
-
+ 
     return (
         <div className="flex flex-col items-center justify-center h-80">
-            {/* <div className="message text-xl text-black text-center mb-4">
-                {headerMessage}
-            </div> */}
+            <div className="message text-xl text-black text-center mb-4 h-16">
+                {alert}
+            </div>
 
-            <div className="timer font-bold">
+            <div className="timer font-bold h-16">
                 <span className="text-black text-4xl">
                     {timerMinutes}:
                 </span>
