@@ -50,8 +50,8 @@ const Timer = () => {
                                 // start short break
                                 setAlert(
                                     <> 
-                                        <span className="font-bold">Round {rounds} done.</span> 
-                                        <span>{quote}</span>
+                                        <span className="font-bold text-xl">Round {rounds} done.</span> 
+                                        <span className="text-sm">{quote}</span>
                                     </>
                                 );
                                 setMinutes(0);
@@ -94,7 +94,7 @@ const Timer = () => {
     return (
         <div className="flex flex-col items-center justify-center h-96 mb-16">
 
-            <div className="flex flex-col items-center justify-center text-xl text-black text-center h-1/2">
+            <div className="flex flex-col items-center justify-center text-black text-center h-1/2">
                 {alert}
             </div>
 

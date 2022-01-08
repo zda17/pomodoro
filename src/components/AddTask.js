@@ -26,7 +26,7 @@ const AddTask = ({ onAdd }) => {
                     type='text' 
                     placeholder='Add New Task' 
                     value={text} 
-                    className="w-5/6 rounded-l-lg p-2 text-xl"
+                    className="w-5/6 rounded-l-lg p-2 text-md"
                     onChange={(e) => setText(e.target.value)}
                 ></input>
 

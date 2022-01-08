@@ -11,12 +11,12 @@ const Task = ({ task, onDelete, onToggle }) => {
                 className="flex items-center cursor-pointer"
                 onClick={() => onToggle(task.id)}
             >
-                <div className="mr-2 text-md">
+                <div className="mr-2 text-sm">
                     {task.completed === true ? <FontAwesomeIcon className='text-termly-blue' icon={faCheckCircle} />  : <FontAwesomeIcon icon={farCircle} />}
                 </div>
 
                 <h3 
-                    className={'text-black text-md ' + (task.completed === true ? 'line-through' : '')}
+                    className={'text-black text-sm ' + (task.completed === true ? 'line-through' : '')}
                 >
                     {task.text} 
                 </h3>
