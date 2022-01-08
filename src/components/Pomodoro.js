@@ -9,14 +9,13 @@ const Pomodoro = () => {
                 <img 
                     src="https://termly.io/wp-content/themes/genesis-tly-v4/images/logo.svg" 
                     alt="Termly Logo"
-                    className="h-12"
+                    className="h-full pt-4 bg-white w-full"
                 />
             </div>
 
             <Timer />
 
             <Tasks />
-            
         </div>
     )
 }

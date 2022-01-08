@@ -18,7 +18,7 @@ code {
 progress {
   border-radius: 7px; 
   width: 100%;
-  height: 22px;
+  height: 5px;
   margin: 25px 0;
 }
 progress::-webkit-progress-bar {
@@ -32,4 +32,8 @@ progress::-webkit-progress-value {
    -moz-transition: width 1s ease;
      -o-transition: width 1s ease;
         transition: width 1s ease;
+}
+
+.wrapper {
+  overflow-y: hidden !important;
 }
