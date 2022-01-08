@@ -4,7 +4,7 @@ import Task from './Task';
 import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
 
-const Tasks = ({ toggleAddTaskForm, toggleTimer }) => {
+const Tasks = ({ toggleTimer, alert }) => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {

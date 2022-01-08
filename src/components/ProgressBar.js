@@ -1,24 +1,21 @@
 import {useState, useEffect} from "react";
 
-const ProgressBar = ({ tasks, toggleTimer }) => {
+const ProgressBar = ({ tasks, toggleTimer, alert }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const tasksProgress = () => {
-            let completedProgress = 0;
-            let completedTasks = tasks.filter((task) => task.completed);
-            completedTasks = completedTasks.length;
+            let completedProgress;
+            let completedTasks = tasks.filter((task) => task.completed).length;
 
             if (completedTasks) {
                 completedProgress = completedTasks / tasks.length * 100;
+                setProgress(completedProgress);
             }
 
             if (completedProgress === 100) {
-                setProgress(completedProgress);
                 toggleTimer();
                 confetti();
-            } else {
-                setProgress(completedProgress);
             }
         }
 
