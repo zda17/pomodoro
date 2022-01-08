@@ -32,7 +32,6 @@ const ProgressBar = ({ tasks }) => {
                 id="file" 
                 max="100"
                 className="progress-bar w-full"
-                style={{"WebkitProgressBar": "red"}}
                 value={progress}>
                 {progress}
             </progress>
