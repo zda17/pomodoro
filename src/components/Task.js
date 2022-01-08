@@ -23,7 +23,8 @@ const Task = ({ task, onDelete, onToggle }) => {
             </div>
 
             <FontAwesomeIcon 
-                icon={faTrash} 
+                icon={faTrash}
+                className="cursor-pointer" 
                 onClick={() => onDelete(task.id)} 
             />
         </div>
