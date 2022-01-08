@@ -16,8 +16,6 @@ const ProgressBar = ({ tasks }) => {
             if (completedProgress === 100) {
                 // TODO: stop the timer and show a congratulatory message!
                 console.log('All tasks are completed!');
-            } else if (completedProgress !== 0) {
-                setProgress(completedProgress);
             } else {
                 setProgress(completedProgress);
             }
