@@ -6,16 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
-    const [rounds, setRounds] = useState(1);
+    const [rounds, setRounds] = useState(0);
     const [seconds, setSeconds] = useState(3);
     const [minutes, setMinutes] = useState(0);
     const [breakTime, setBreakTime] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
     const [alert, setAlert] = useState(`Press play when youre ready!`);
-    const [quote, setQuote] = useState('');
+    const [quote, setQuote] = useState(false);
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    useEffect(() => {
+        fetchQuote();
+    }, []);
 
     useEffect(() => {
         let interval;
@@ -32,20 +36,24 @@ const Timer = () => {
                                 setBreakTime(false);
                             } else if (rounds % 4 === 0) {
                                 // start long break
-                                setAlert('4 rounds are up! Time for a long break.');
+                                setAlert(
+                                    <> 
+                                        <span className="font-bold">4 rounds are up!</span> 
+                                        <span>Time for a long break. The timer will automatically reset after this break.</span>
+                                    </>
+                                );
                                 setMinutes(0);
                                 setSeconds(10);
                                 setBreakTime(true);
                                 setRounds(0);
                             } else {
                                 // start short break
-                                if (rounds === 1) {
-                                    setAlert(`First round down! ${quote}`);
-                                } else if (rounds === 2) {
-                                    setAlert(`Half way done. Take some deep breaths. ${quote}`);
-                                } else if (rounds === 3) {
-                                    setAlert(`1 round to go! Remember why you started. ${quote}`);
-                                }
+                                setAlert(
+                                    <> 
+                                        <span className="font-bold">Round {rounds} done.</span> 
+                                        <span>{quote}</span>
+                                    </>
+                                );
                                 setMinutes(0);
                                 setSeconds(5);
                                 setBreakTime(true);
@@ -64,18 +72,16 @@ const Timer = () => {
         return () => clearInterval(interval);
     }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
-    useEffect(() => {
-        fetchQuote();
-    }, []);
-
     const toggleTimer = () => {
         setTimerActive(!timerActive);
-        setAlert(false);
+        if (rounds === 0) {
+            setRounds(rounds + 1);
+            setAlert(false);
+        }
     }
 
     const fetchQuote = async () => {
         try {
-            console.log("fetch random quote...");
             const quoteObject = await axios.get("https://api.quotable.io/random");
             setQuote(quoteObject.data.content);
         } catch (error) {
@@ -84,26 +90,29 @@ const Timer = () => {
     }
  
     return (
-        <div className="flex flex-col items-center justify-center h-80">
-            <div className="message text-xl text-black text-center mb-4 h-16">
+        <div className="flex flex-col items-center justify-center h-96 mb-16">
+
+            <div className="flex flex-col justify-center text-xl text-black text-center h-1/2">
                 {alert}
             </div>
 
-            <div className="timer font-bold h-16">
-                <span className="text-black text-4xl">
-                    {timerMinutes}:
-                </span>
-                <span className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-4xl'}>
-                    {timerSeconds}
-                </span>
-            </div>
+            <div className="flex flex-col w-full h-1/2">
+                <div className="flex items-center justify-center font-bold h-2/3">
+                    <div className="text-black text-5xl">
+                        {timerMinutes}:
+                    </div>
+                    <div className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-5xl'}>
+                        {timerSeconds}
+                    </div>
+                </div>
 
-            <button 
-                className="bg-termly-blue text-white p-5 mt-4 rounded-2xl"
-                onClick={toggleTimer}
-            >
-                {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
-            </button>
+                <button 
+                    className="bg-termly-blue text-white p-5 rounded-2xl"
+                    onClick={toggleTimer}
+                >
+                    {timerActive ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
+                </button>
+            </div>
         </div>
     )
 }
