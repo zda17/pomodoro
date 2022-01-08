@@ -7,8 +7,23 @@
     },
     {
       "text": "Task 2",
-      "completed": false,
+      "completed": true,
       "id": 2
+    },
+    {
+      "text": "Task 3",
+      "completed": true,
+      "id": 3
+    },
+    {
+      "text": "Task 4",
+      "completed": true,
+      "id": 4
+    },
+    {
+      "text": "Task 5",
+      "completed": true,
+      "id": 5
     }
   ]
 }

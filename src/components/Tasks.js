@@ -5,6 +5,7 @@ import AddTask from './AddTask';
 
 const Tasks = ({ toggleAddTaskForm }) => {
     const [tasks, setTasks] = useState([]);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -14,6 +15,22 @@ const Tasks = ({ toggleAddTaskForm }) => {
 
         getTasks();
     }, [])
+
+    useEffect(() => {
+        const tasksProgress = () => {
+            let completedTasks = tasks.filter((task) => task.completed);
+            completedTasks = completedTasks.length;
+
+            if (completedTasks) {
+                setProgress(completedTasks / tasks.length * 100);
+                console.log(progress);
+            } else {
+                setProgress(0);
+            }
+        }
+
+        tasksProgress();
+    }, [progress, tasks])
 
     // Fetch all tasks
     const fetchTasks = async () => {
@@ -82,6 +99,14 @@ const Tasks = ({ toggleAddTaskForm }) => {
             <AddTask onAdd={addTask} />
 
             <hr className="my-8 text-slate-300" />
+
+            <progress 
+                id="file" 
+                max="100"
+                className="w-full"
+                value={progress}>
+                Progress
+            </progress>
             
             {tasks.map((task) => (
                 <Task 

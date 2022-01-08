@@ -69,6 +69,7 @@ const Timer = () => {
                     }
             }, 1000)
         }
+        // cleanup function
         return () => clearInterval(interval);
     }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
