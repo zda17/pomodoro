@@ -75,9 +75,6 @@ const Timer = () => {
     }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
     const toggleTimer = () => {
-        // for some reason this is hit twice when all tasks are completed... why?
-        console.log('this is hit');
-        console.log(timerActive);
         setTimerActive(!timerActive);
         if (rounds === 0) {
             setRounds(rounds + 1);
