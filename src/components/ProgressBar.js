@@ -14,9 +14,10 @@ const ProgressBar = ({ tasks }) => {
             }
 
             if (completedProgress === 100) {
-                // TODO: stop the timer and show a congratulatory message!
                 console.log('All tasks are completed!');
+                setProgress(completedProgress);
                 confetti();
+                // TODO: stop the timer and show a congratulatory message!
             } else {
                 setProgress(completedProgress);
             }
@@ -25,13 +26,18 @@ const ProgressBar = ({ tasks }) => {
         tasksProgress();
     }, [progress, tasks])
 
+    const clearConfetti = () => {
+        const canvas = document.querySelector('#confetti');
+        canvas.style.display = "none";
+    }
+
     const confetti = () => {
-        const canvasEl = document.querySelector('#confetti');
+        const canvas = document.querySelector('#confetti');
 
-        canvasEl.style.display = "block";
+        canvas.style.display = "block";
 
-        const w = canvasEl.width = window.innerWidth;
-        const h = canvasEl.height = window.innerHeight * 2;
+        const w = canvas.width = window.innerWidth;
+        const h = canvas.height = window.innerHeight * 2;
 
         function loop() {
             requestAnimationFrame(loop);
@@ -91,11 +97,14 @@ const ProgressBar = ({ tasks }) => {
             ctx.fill();
         };
 
-        const ctx = canvasEl.getContext('2d');
+        const ctx = canvas.getContext('2d');
         const confNum = Math.floor(w / 4);
         const confs = new Array(confNum).fill().map(_ => new Confetti());
 
         loop();
+
+        // clear confetti after 10 seconds so user can continue using the app.
+        setTimeout(clearConfetti, 10000);
     }
 
     return (
@@ -109,7 +118,6 @@ const ProgressBar = ({ tasks }) => {
             </progress>
             {/* styling is in index.css for simplicity */}
 
-            {/* TODO: turn confetti into its own component */}
             <canvas id="confetti"></canvas>
         </>
     )

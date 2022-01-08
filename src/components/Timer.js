@@ -7,7 +7,7 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
     const [rounds, setRounds] = useState(0);
-    const [seconds, setSeconds] = useState(3);
+    const [seconds, setSeconds] = useState(7);
     const [minutes, setMinutes] = useState(0);
     const [breakTime, setBreakTime] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
