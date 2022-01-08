@@ -16,24 +16,24 @@ code {
 }
 
 progress {
-  border-radius: 7px; 
+  border-radius: 7px 7px 0 0; 
   width: 100%;
-  height: 5px;
+  height: 10px;
   margin: 25px 0;
 }
 progress::-webkit-progress-bar {
   background-color: #f4f4f4;
-  border-radius: 7px;
+  border-radius: 7px 7px 0 0; 
 }
 progress::-webkit-progress-value {
   background-color: #4672FF;
-  border-radius: 7px;
+  border-radius: 7px 0px 0 0; 
   -webkit-transition: width 1s ease;
    -moz-transition: width 1s ease;
      -o-transition: width 1s ease;
         transition: width 1s ease;
 }
 
-.wrapper {
-  overflow-y: hidden !important;
+.progress-bar {
+  margin-bottom: -7px;
 }
