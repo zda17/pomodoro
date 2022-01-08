@@ -12,7 +12,7 @@ const Timer = () => {
     const [breakTime, setBreakTime] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
     const [alert, setAlert] = useState(`Press play when youre ready!`);
-    const [quote, setQuote] = useState(false);
+    const [quote, setQuote] = useState('');
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
@@ -42,13 +42,14 @@ const Timer = () => {
                                 if (rounds === 1) {
                                     setAlert(`First round down! ${quote}`);
                                 } else if (rounds === 2) {
-                                    setAlert('Half way done. Take some deep breaths. Re-focus. You got this!');
+                                    setAlert(`Half way done. Take some deep breaths. ${quote}`);
                                 } else if (rounds === 3) {
-                                    setAlert('1 round to go! Remember why you started.');
+                                    setAlert(`1 round to go! Remember why you started. ${quote}`);
                                 }
                                 setMinutes(0);
                                 setSeconds(5);
                                 setBreakTime(true);
+                                fetchQuote();
                             }
                         } else {
                             // lower minutes by 1, reset seconds to 59
@@ -63,9 +64,23 @@ const Timer = () => {
         return () => clearInterval(interval);
     }, [seconds, minutes, rounds, breakTime, timerActive, alert, quote])
 
+    useEffect(() => {
+        fetchQuote();
+    }, []);
+
     const toggleTimer = () => {
         setTimerActive(!timerActive);
         setAlert(false);
+    }
+
+    const fetchQuote = async () => {
+        try {
+            console.log("fetch random quote...");
+            const quoteObject = await axios.get("https://api.quotable.io/random");
+            setQuote(quoteObject.data.content);
+        } catch (error) {
+            console.log('error fetching quote...');
+        }
     }
  
     return (
