@@ -19,7 +19,7 @@ const AddTask = ({ onAdd }) => {
     }
 
     return (
-        <form className="add-task-form" onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
             <div className="flex w-full h-10">
                 <label></label>
                 <input 

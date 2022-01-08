@@ -85,7 +85,8 @@ const Timer = () => {
             const quoteObject = await axios.get("https://api.quotable.io/random");
             setQuote(quoteObject.data.content);
         } catch (error) {
-            console.log('error fetching quote...');
+            console.log(error);
+            setQuote(false);
         }
     }
  
@@ -106,6 +107,7 @@ const Timer = () => {
                     </div>
                 </div>
 
+                {/* TODO: finish the button component */}
                 <button 
                     className="bg-termly-blue text-white p-5 rounded-2xl"
                     onClick={toggleTimer}
