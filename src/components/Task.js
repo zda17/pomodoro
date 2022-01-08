@@ -20,6 +20,8 @@ const Task = ({ task, onDelete, onToggle }) => {
                 >
                     {task.text} 
                 </h3>
+
+                {/* TODO: after task is completed, show timestamp of how long it took to complete. */}
             </div>
 
             <FontAwesomeIcon 
