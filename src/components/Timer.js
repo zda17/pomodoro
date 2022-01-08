@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
-    const [rounds, setRounds] = useState(0);
+    const [rounds, setRounds] = useState(4);
     const [seconds, setSeconds] = useState(7);
     const [minutes, setMinutes] = useState(0);
     const [breakTime, setBreakTime] = useState(false);
@@ -39,9 +39,9 @@ const Timer = () => {
                                 // start long break
                                 setAlert(
                                     <> 
-                                        <span className="font-bold">4 rounds are up.</span> 
+                                        <span className="font-bold text-xl">4 rounds are up.</span> 
                                         <span className="font-bold text-lg italic">Time for a long break!</span>
-                                        <span>The timer will automatically reset after this break.</span>
+                                        <span className="text-sm">The timer will automatically reset after this break.</span>
                                     </>
                                 );
                                 setMinutes(0);
