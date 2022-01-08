@@ -33,7 +33,7 @@ const AddTask = ({ onAdd }) => {
                 <input 
                     type="submit" 
                     value="+" 
-                    className="w-1/6 bg-termly-blue rounded-r-lg text-white text-2xl"
+                    className="w-1/6 bg-termly-blue rounded-r-lg text-white text-2xl cursor-pointer"
                 ></input>
 
             </div>
