@@ -52,6 +52,7 @@ const Timer = () => {
                                 setAlert(
                                     <> 
                                         <span className="font-bold text-xl">Round {rounds} done.</span> 
+                                        <span className="font-bold text-lg italic">Take a short break!</span>
                                         <span className="text-sm">{quote}</span>
                                     </>
                                 );
