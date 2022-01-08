@@ -94,7 +94,7 @@ const Timer = () => {
     return (
         <div className="flex flex-col items-center justify-center h-96 mb-16">
 
-            <div className="flex flex-col justify-center text-xl text-black text-center h-1/2">
+            <div className="flex flex-col items-center justify-center text-xl text-black text-center h-1/2">
                 {alert}
             </div>
 

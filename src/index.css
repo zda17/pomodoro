@@ -33,7 +33,6 @@ progress::-webkit-progress-value {
      -o-transition: width 1s ease;
         transition: width 1s ease;
 }
-
 .progress-bar {
   margin-bottom: -7px;
 }
