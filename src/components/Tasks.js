@@ -4,8 +4,20 @@ import Task from './Task';
 import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
 
-const Tasks = ({ toggleTimer, timerActive }) => {
+// I copied this "confetti" code from an external source, so moving it out of the way
+// just thought it would be a nice creative touch upon task completion
+import confetti from '../methods/Confetti.js'
+
+// TODO: move tracking progress state up one level from ProgressBar.js to here, so that I can use
+// it in Timer.js to display different alerts. Then track current task for display inside of Alerts.
+// I could also track the start time and end time of each task, then calculate how long that task
+// took to complete and display that timestamp next to each task upon completion.
+// On top of that, I could disable "completing" any other tasks until the current task is done?
+// Should I then make tasks draggable by priority?
+
+const Tasks = ({ toggleTimer, timerActive, setAlert, setCurrentTask }) => {
     const [tasks, setTasks] = useState([]);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -15,6 +27,48 @@ const Tasks = ({ toggleTimer, timerActive }) => {
 
         getTasks();
     }, [])
+
+    useEffect(() => {
+        const getCurrentTask = () => {
+            let currentTask = tasks.find((task) => task.completed === false);
+
+            if (currentTask) {
+                currentTask = currentTask.text;
+                setCurrentTask(currentTask);
+            }
+        }
+
+        getCurrentTask();
+    }, [tasks])
+
+    useEffect(() => {
+        const tasksProgress = () => {
+            let completedProgress;
+            let completedTasks = tasks.filter((task) => task.completed).length;
+
+            if (completedTasks) {
+                completedProgress = completedTasks / tasks.length * 100;
+                setProgress(completedProgress);
+            }
+
+            if (completedProgress === 100) {
+                confetti();
+                setAlert(
+                    <> 
+                        <span className="font-bold text-xl">You're an absolute machine. You completed all tasks!</span> 
+                        {/* TODO: Could show how much time is left (across all rounds) */}
+                    </>
+                )
+                if (timerActive) {
+                    toggleTimer();
+                    // if someone stops timer then completes last task
+                    // dont start the timer again
+                }
+            }
+        }
+
+        tasksProgress();
+    }, [tasks])
 
     // Fetch all tasks
     const fetchTasks = async () => {
@@ -82,7 +136,7 @@ const Tasks = ({ toggleTimer, timerActive }) => {
         <div className="w-full">
             <AddTask onAdd={addTask} />
 
-            <ProgressBar tasks={tasks} toggleTimer={toggleTimer} timerActive={timerActive} />
+            <ProgressBar progress={progress} />
             
             <div className="h-40 overflow-y-scroll shadow-inner p-2 rounded-b-lg">
                 {tasks.map((task) => (

@@ -14,6 +14,7 @@ const Timer = () => {
     const [timerActive, setTimerActive] = useState(false);
     const [alert, setAlert] = useState(`Press play when youre ready!`);
     const [quote, setQuote] = useState(false);
+    const [currentTask, setCurrentTask] = useState(false);
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
@@ -98,6 +99,10 @@ const Timer = () => {
         <>
             <div className="flex flex-col items-center justify-center h-96 mb-16">
 
+                <div className=" bg-white w-48 text-termly-blue text-center font-bold mt-4 rounded-lg text-sm">
+                    Current Task: {currentTask}
+                </div>
+
                 <div className="flex flex-col items-center justify-center text-black text-center h-1/2">
                     {alert}
                 </div>
@@ -123,7 +128,7 @@ const Timer = () => {
 
             </div>
             
-            <Tasks toggleTimer={toggleTimer} timerActive={timerActive} />
+            <Tasks toggleTimer={toggleTimer} timerActive={timerActive} setAlert={setAlert} setCurrentTask={setCurrentTask} />
         </>
     )
 }
