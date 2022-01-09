@@ -99,7 +99,7 @@ const Timer = () => {
         <>
             <div className="flex flex-col items-center justify-center h-96 mb-16">
 
-                <div>
+                <div className=" bg-termly-blue w-48 text-white text-center font-bold mt-4 rounded-lg text-sm">
                     Current Task: {currentTask}
                 </div>
 
