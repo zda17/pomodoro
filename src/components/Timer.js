@@ -123,7 +123,7 @@ const Timer = () => {
 
             </div>
             
-            <Tasks toggleTimer={toggleTimer} timerActive={timerActive} />
+            <Tasks toggleTimer={toggleTimer} timerActive={timerActive} setAlert={setAlert} />
         </>
     )
 }

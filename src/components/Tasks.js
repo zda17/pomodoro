@@ -15,7 +15,7 @@ import confetti from '../methods/Confetti.js'
 // On top of that, I could disable "completing" any other tasks until the current task is done?
 // Should I then make tasks draggable by priority?
 
-const Tasks = ({ toggleTimer, timerActive }) => {
+const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
     const [tasks, setTasks] = useState([]);
     const [progress, setProgress] = useState(0);
 
@@ -40,6 +40,12 @@ const Tasks = ({ toggleTimer, timerActive }) => {
 
             if (completedProgress === 100) {
                 confetti();
+                setAlert(
+                    <> 
+                        <span className="font-bold text-xl">You're an absolute machine. You completed all tasks!</span> 
+                        {/* TODO: Could show how much time is left (across all rounds) */}
+                    </>
+                )
                 if (timerActive) {
                     toggleTimer();
                     // if someone stops timer then completes last task
