@@ -18,6 +18,7 @@ import confetti from '../methods/Confetti.js'
 const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
     const [tasks, setTasks] = useState([]);
     const [progress, setProgress] = useState(0);
+    const [currentTask, setCurrentTask] = useState(false);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -27,6 +28,15 @@ const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
 
         getTasks();
     }, [])
+
+    useEffect(() => {
+        const getCurrentTask = () => {
+            const currentTask = tasks.find((task) => task.completed === false);
+            setCurrentTask(currentTask);
+        }
+
+        getCurrentTask();
+    }, [tasks])
 
     useEffect(() => {
         const tasksProgress = () => {
