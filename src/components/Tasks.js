@@ -3,6 +3,10 @@ import {useState, useEffect} from "react";
 import Task from './Task';
 import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
+import Timer from "./Timer";
+
+// TODO: move tracking progress state up one level from ProgressBar.js to here, so that I can use
+// it in Timer.js to display different alerts
 
 const Tasks = ({ toggleTimer, timerActive }) => {
     const [tasks, setTasks] = useState([]);
