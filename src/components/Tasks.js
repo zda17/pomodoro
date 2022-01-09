@@ -31,8 +31,17 @@ const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
 
     useEffect(() => {
         const getCurrentTask = () => {
-            const currentTask = tasks.find((task) => task.completed === false);
-            setCurrentTask(currentTask);
+            let currentTask = tasks.find((task) => task.completed === false);
+
+            if (currentTask) {
+                currentTask = currentTask.text;
+                setCurrentTask(currentTask);
+                setAlert(
+                    <> 
+                        <span className="font-bold text-xl">Current task: {currentTask} </span> 
+                    </>
+                )
+            }
         }
 
         getCurrentTask();
