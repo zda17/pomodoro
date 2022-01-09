@@ -15,10 +15,9 @@ import confetti from '../methods/Confetti.js'
 // On top of that, I could disable "completing" any other tasks until the current task is done?
 // Should I then make tasks draggable by priority?
 
-const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
+const Tasks = ({ toggleTimer, timerActive, setAlert, setCurrentTask }) => {
     const [tasks, setTasks] = useState([]);
     const [progress, setProgress] = useState(0);
-    const [currentTask, setCurrentTask] = useState(false);
 
     useEffect(() => {
         const getTasks = async () => {
@@ -36,11 +35,6 @@ const Tasks = ({ toggleTimer, timerActive, setAlert }) => {
             if (currentTask) {
                 currentTask = currentTask.text;
                 setCurrentTask(currentTask);
-                setAlert(
-                    <> 
-                        <span className="font-bold text-xl">Current task: {currentTask} </span> 
-                    </>
-                )
             }
         }
 

@@ -22,12 +22,12 @@
     },
     {
       "text": "Task 5",
-      "completed": true,
+      "completed": false,
       "id": 5
     },
     {
       "text": "Task 6",
-      "completed": true,
+      "completed": false,
       "id": 6
     },
     {
