@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-const ProgressBar = ({ tasks, toggleTimer, alert }) => {
+const ProgressBar = ({ tasks, toggleTimer, timerActive }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -14,8 +14,12 @@ const ProgressBar = ({ tasks, toggleTimer, alert }) => {
             }
 
             if (completedProgress === 100) {
-                toggleTimer();
                 confetti();
+                // if someone stops timer then completes last task
+                // dont start the timer again
+                if (timerActive) {
+                    toggleTimer();
+                }
             }
         }
 

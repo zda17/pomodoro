@@ -4,7 +4,7 @@ import Task from './Task';
 import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
 
-const Tasks = ({ toggleTimer, alert }) => {
+const Tasks = ({ toggleTimer, timerActive }) => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
@@ -82,7 +82,7 @@ const Tasks = ({ toggleTimer, alert }) => {
         <div className="w-full">
             <AddTask onAdd={addTask} />
 
-            <ProgressBar tasks={tasks} toggleTimer={toggleTimer} />
+            <ProgressBar tasks={tasks} toggleTimer={toggleTimer} timerActive={timerActive} />
             
             <div className="h-40 overflow-y-scroll shadow-inner p-2 rounded-b-lg">
                 {tasks.map((task) => (
