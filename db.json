@@ -34,6 +34,11 @@
       "text": "Task 7",
       "completed": true,
       "id": 7
+    },
+    {
+      "text": "Task 8",
+      "completed": true,
+      "id": 8
     }
   ]
 }

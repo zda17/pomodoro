@@ -5,7 +5,11 @@ import AddTask from './AddTask';
 import ProgressBar from './ProgressBar';
 
 // TODO: move tracking progress state up one level from ProgressBar.js to here, so that I can use
-// it in Timer.js to display different alerts
+// it in Timer.js to display different alerts. Then track current task for display inside of Alerts.
+// I could also track the start time and end time of each task, then calculate how long that task
+// took to complete and display that timestamp next to each task upon completion.
+// On top of that, I could disable "completing" any other tasks until the current task is done?
+// Should I then make tasks draggable by priority?
 
 const Tasks = ({ toggleTimer, timerActive }) => {
     const [tasks, setTasks] = useState([]);
@@ -16,7 +20,7 @@ const Tasks = ({ toggleTimer, timerActive }) => {
         canvas.style.display = "none";
     }
 
-    // I copied this code from an external library, so I'm collapsing it for space's sake
+    // I copied this "confetti" function from an external library, so I'm collapsing it for space's sake
     const confetti = () => {
         const canvas = document.querySelector('#confetti');
 
@@ -111,10 +115,10 @@ const Tasks = ({ toggleTimer, timerActive }) => {
 
             if (completedProgress === 100) {
                 confetti();
-                // if someone stops timer then completes last task
-                // dont start the timer again
                 if (timerActive) {
                     toggleTimer();
+                    // if someone stops timer then completes last task
+                    // dont start the timer again
                 }
             }
         }
