@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
-    const [rounds, setRounds] = useState(3);
+    const [rounds, setRounds] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(25);
     const [breakTime, setBreakTime] = useState(false);
