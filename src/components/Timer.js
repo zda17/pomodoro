@@ -9,8 +9,8 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
     const [rounds, setRounds] = useState(0);
-    const [seconds, setSeconds] = useState(7);
-    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(25);
     const [breakTime, setBreakTime] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
     const [alert, setAlert] = useState(`Press play when youre ready!`);
@@ -37,8 +37,8 @@ const Timer = () => {
                             if (breakTime === true) {
                                 // break time just ended, start a new round
                                 setRounds(rounds + 1);
-                                setMinutes(0);
-                                setSeconds(15);
+                                setMinutes(25);
+                                setSeconds(0);
                                 setAlert(false);
                                 setBreakTime(false);
                             } else if (rounds % 4 === 0) {
@@ -50,8 +50,8 @@ const Timer = () => {
                                         <span className="text-sm">The timer will automatically reset after this break.</span>
                                     </>
                                 );
-                                setMinutes(0);
-                                setSeconds(10);
+                                setMinutes(15);
+                                setSeconds(0);
                                 setBreakTime(true);
                                 setRounds(0);
                             } else {
@@ -63,8 +63,8 @@ const Timer = () => {
                                         <span className="text-sm">{quote}</span>
                                     </>
                                 );
-                                setMinutes(0);
-                                setSeconds(5);
+                                setMinutes(5);
+                                setSeconds(0);
                                 setBreakTime(true);
                                 fetchQuote();
                             }
@@ -136,7 +136,7 @@ const Timer = () => {
                         <div className="text-black text-5xl">
                             {timerMinutes}:
                         </div>
-                        <div className={seconds <= 5 ? 'text-termly-blue text-6xl transition-all' : 'text-black text-5xl'}>
+                        <div className={(minutes === 0 && seconds <= 5) ? 'text-termly-blue text-6xl transition-all' : 'text-black text-5xl'}>
                             {timerSeconds}
                         </div>
                     </div>
