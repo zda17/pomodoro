@@ -7,12 +7,12 @@
     },
     {
       "text": "Task 2",
-      "completed": false,
+      "completed": true,
       "id": 2
     },
     {
       "text": "Task 3",
-      "completed": false,
+      "completed": true,
       "id": 3
     },
     {

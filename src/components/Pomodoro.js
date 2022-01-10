@@ -11,11 +11,16 @@ const Pomodoro = () => {
             2xl:w-1/5 2xl:shadow-lg 2xl:rounded-lg 2xl:p-8 2xl:bg-white"
         >
             <div className="flex justify-center">
-                <img 
-                    src="https://termly.io/wp-content/themes/genesis-tly-v4/images/logo.svg" 
-                    alt="Termly Logo"
-                    className="h-16 pt-4 bg-white w-full"
-                />
+                <a 
+                    href="https://www.termly.io"
+                    target="blank"
+                >
+                    <img 
+                        src="https://termly.io/wp-content/themes/genesis-tly-v4/images/logo.svg" 
+                        alt="Termly Logo"
+                        className="h-16 pt-4 bg-white w-full"
+                    />
+                </a>
             </div>
 
             <Timer />
