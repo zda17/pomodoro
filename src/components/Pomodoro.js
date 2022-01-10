@@ -4,17 +4,17 @@ import Timer from "./Timer";
 const Pomodoro = () => {
     return (
         <div 
-            className="w-10/12 flex flex-col py-8 
-            md:w-1/2 md:shadow-lg md:rounded-lg md:p-8 md:bg-white md:py-0 md:px-8
-            lg:w-1/5 lg:shadow-lg lg:rounded-lg lg:p-8 lg:bg-white lg:py-0 lg:px-8
-            xl:w-1/4 xl:shadow-lg xl:rounded-lg xl:p-8 xl:bg-white xl:py-0 xl:px-8
-            2xl:w-1/4 2xl:shadow-lg 2xl:rounded-lg 2xl:p-8 2xl:bg-white 2xl:py-0 2xl:px-8"
+            className="w-10/12 flex flex-col
+            md:w-1/2 md:shadow-lg md:rounded-lg md:p-8 md:bg-white
+            lg:w-1/3 lg:shadow-lg lg:rounded-lg lg:p-8 lg:bg-white 
+            xl:w-1/4 xl:shadow-lg xl:rounded-lg xl:p-8 xl:bg-white
+            2xl:w-1/5 2xl:shadow-lg 2xl:rounded-lg 2xl:p-8 2xl:bg-white"
         >
-            <div className="h-16 flex justify-center">
+            <div className="flex justify-center">
                 <img 
                     src="https://termly.io/wp-content/themes/genesis-tly-v4/images/logo.svg" 
                     alt="Termly Logo"
-                    className="h-full pt-4 bg-white w-full"
+                    className="h-16 pt-4 bg-white w-full"
                 />
             </div>
 

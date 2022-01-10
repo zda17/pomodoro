@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from 'moment'
 import { useState, useEffect } from "react";
 
 import Tasks from "./Tasks";
@@ -15,6 +16,10 @@ const Timer = () => {
     const [alert, setAlert] = useState(`Press play when youre ready!`);
     const [quote, setQuote] = useState(false);
     const [currentTask, setCurrentTask] = useState(false);
+
+    // TODO:
+    // const [startTaskTime, setStartTaskTime] = useState(false);
+    // const [endTaskTime, setEndTaskTime] = useState(false);
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
@@ -83,6 +88,8 @@ const Timer = () => {
             setRounds(rounds + 1);
             setAlert(false);
         }
+
+        // calculateTimeToCompleteTask();
     }
 
     const fetchQuote = async () => {
@@ -94,12 +101,29 @@ const Timer = () => {
             setQuote(false);
         }
     }
+
+    // TODO: calculate the start/end time of each task, the subtract the two 
+    // and place "duration" timestamp next to each task
+    // const calculateTimeToCompleteTask = () => {
+    //     if (!startTaskTime) {
+    //         let startTime = moment();
+    //         setStartTaskTime(startTime);
+    //     } else {
+    //         console.log("end time hit... should subtract times...");
+    //         let endTime = moment();
+    //         let timeToCompleteTask = endTime.subtract(startTaskTime);
+
+    //         console.log(timeToCompleteTask);
+
+    //         // then get a new startTime, I think??
+    //     }
+    // }
  
     return (
         <>
             <div className="flex flex-col items-center justify-center h-96 mb-16">
 
-                <div className=" bg-white w-48 text-termly-blue text-center font-bold mt-4 rounded-lg text-sm">
+                <div className=" bg-white w-48 text-termly-blue text-center font-bold my-4 rounded-lg text-sm">
                     Current Task: {currentTask}
                 </div>
 
