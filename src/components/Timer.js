@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = () => {
-    const [rounds, setRounds] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    const [minutes, setMinutes] = useState(25);
+    const [rounds, setRounds] = useState(3);
+    const [seconds, setSeconds] = useState(7);
+    const [minutes, setMinutes] = useState(0);
     const [breakTime, setBreakTime] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
     const [alert, setAlert] = useState(`Press play when youre ready!`);
@@ -36,9 +36,9 @@ const Timer = () => {
                         if (minutes === 0) {
                             if (breakTime === true) {
                                 // break time just ended, start a new round
-                                setRounds(rounds + 1);
-                                setMinutes(25);
-                                setSeconds(0);
+                                setRounds(rounds => rounds + 1);
+                                setMinutes(0);
+                                setSeconds(30);
                                 setAlert(false);
                                 setBreakTime(false);
                             } else if (rounds % 4 === 0) {
@@ -50,8 +50,8 @@ const Timer = () => {
                                         <span className="text-sm">The timer will automatically reset after this break.</span>
                                     </>
                                 );
-                                setMinutes(15);
-                                setSeconds(0);
+                                setMinutes(0);
+                                setSeconds(15);
                                 setBreakTime(true);
                                 setRounds(0);
                             } else {
@@ -63,18 +63,18 @@ const Timer = () => {
                                         <span className="text-sm">{quote}</span>
                                     </>
                                 );
-                                setMinutes(5);
-                                setSeconds(0);
+                                setMinutes(0);
+                                setSeconds(10);
                                 setBreakTime(true);
                                 fetchQuote();
                             }
                         } else {
                             // lower minutes by 1, reset seconds to 59
                             setSeconds(59);
-                            setMinutes(minutes - 1);
+                            setMinutes(minutes => minutes - 1);
                         }
                     } else {
-                        setSeconds(seconds - 1);
+                        setSeconds(seconds => seconds - 1);
                     }
             }, 1000)
         }
