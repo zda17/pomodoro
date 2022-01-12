@@ -132,7 +132,7 @@ const Timer = () => {
                 </div>
 
                 <div className="flex flex-col w-full h-1/2">
-                    <div className="flex items-center justify-center font-bold h-2/3">
+                    <div className="flex items-center justify-center font-bold h-2/3 mb-4">
                         <div className="text-black text-5xl">
                             {timerMinutes}:
                         </div>
